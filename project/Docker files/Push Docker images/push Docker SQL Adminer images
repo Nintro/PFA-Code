@@ -1,0 +1,13 @@
+aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+
+docker build -t php-app .
+docker tag php-app:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/php-app:latest
+docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/php-app:latest
+
+docker build -t mysql-db .
+docker tag mysql-db:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/mysql-db:latest
+docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/mysql-db:latest
+
+docker build -t adminer .
+docker tag adminer:latest <aws_account_id>.dkr.ecr.<region>.amazonaws.com/adminer:latest
+docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/adminer:latest
